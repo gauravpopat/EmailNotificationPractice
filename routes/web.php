@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/index',[HomeController::class,'index'])->name('index');
 Route::post('/sendEmail',[HomeController::class,'sendEmail'])->name('sendEmail');
+Route::get('/sendNotification',[HomeController::class,'sendNotification'])->name('sendNotification');

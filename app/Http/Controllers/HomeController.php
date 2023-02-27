@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\DemoMail;
+use App\Models\User;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class HomeController extends Controller
 {
@@ -30,5 +33,12 @@ class HomeController extends Controller
 
         Mail::to($data['to'])->send(new DemoMail($data));
         return redirect('index')->with('success',"Email has been sent! Check it");
+    }
+
+    public function sendNotification()
+    {
+        $user = User::first();
+        Notification::send($user, new WelcomeNotification);
+        dd('Notification Sent!');
     }
 }
